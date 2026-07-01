@@ -2,153 +2,73 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  <link rel="stylesheet" href="style.css">
-
   <title>Frontend Mentor | Product list with cart</title>
-
-  <style>
-    .attribution { font-size: 0.6875rem; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main>
-    <!-- Product section Container -->
-    <section class="product">
+  <main class="app-container">
+    <!-- Product Section -->
+    <section class="products-section">
       <h1>Desserts</h1>
-      <div>
-        <article>
-          <div> 
-            <img src="" alt="Waffle">
-            <button>Add To Cart</button>
-          </div>
-          <p>Waffle</p>
-          <h2>Waffle with Berries</h2>
-          <span>6.50</span>
-        </article>
-
-        <article>
-          <div> 
-            <img src="" alt="">
-            <button>Add To Cart</button>
-          </div>
-          <p>Crème Brûlée</p>
-          <h2>Vanilla Bean Crème Brûlée</h2>
-          <span>7.00</span>
-        </article>
-
-        <article>
-          <div> 
-            <img src="" alt="">
-            <button>Add To Cart</button>
-          </div>
-          <p>Macaron</p>
-          <h2>Macaron Mix of Five</h2>
-          <span>8.00</span>
-        </article>
-
-        <article>
-          <div> 
-            <img src="" alt="">
-            <button>Add To Cart</button>
-          </div>
-          <p>Tiramisu</p>
-          <h2>Classic Tiramisu</h2>
-          <span>5.50</span>
-        </article>
-
-        <article>
-          <div> 
-            <img src="" alt="">
-            <button>Add To Cart</button>
-          </div>
-          <p>Baklava</p>
-          <h2>Pistachio Baklava</h2>
-          <span>4.00</span>
-        </article>
-
-        <article>
-          <div> 
-            <img src="" alt="">
-            <button>Add To Cart</button>
-          </div>
-          <p>Pie</p>
-          <h2>Lemon Meringue Pie</h2>
-          <span>5.00</span>
-        </article>
-
-        <article>
-          <div> 
-            <img src="" alt="">
-            <button>Add To Cart</button>
-          </div>
-          <p>Cake</p>
-          <h2>Red Velvet Cake</h2>
-          <span>4.50</span>
-        </article>
-
-        <article>
-          <div> 
-            <img src="" alt="">
-            <button>Add To Cart</button>
-          </div>
-          <p>Brownie</p>
-          <h2>Salted Caramel Brownie</h2>
-          <span>4.50</span>
-        </article>
-
-        <article>
-          <div> 
-            <img src="" alt="">
-            <button>Add To Cart</button>
-          </div>
-          <p>Panna Cotta</p>
-          <h2>Vanilla Panna Cotta</h2>
-          <span>6.50</span>
-        </article>
-
-
+      <div class="products-grid" id="products-grid">
+        <!-- Injected via JavaScript -->
       </div>
     </section>
 
-    <aside>
-      <h2>Your Cart</h2>
-      <!-- Cart Items List Container -->
-      <ul>
-        <!-- Individual Cart Item -->
-        <li>
-          <div>
-            <h3>Product Name</h3>
-            <p>Quantity</p>
-            <span>Unit Price</span>
-            <span>Total Item Price</span>
-          </div>
-          <button>Remove Item</button>
-        </li>
-      <!-- Repeated Cart Items go here -->
-      </ul>
-
-      <!-- Order Total Container -->
-      <div>
-        <span>Order Total</span>
-        <strong>Total Price</strong>
-      </div>
-      <!-- Carbon Neutral Message -->
-      <div>
-        <p>This is a carbon-neutral delivery</p>
+    <!-- Sidebar Cart Section -->
+    <aside class="cart-aside">
+      <h2>Your Cart (<span id="cart-count">0</span>)</h2>
+      
+      <!-- Empty Cart State -->
+      <div id="empty-cart-view" class="empty-cart">
+        <img src="./assets/images/illustration-empty-cart.svg" alt="Empty Cart">
+        <p>Your added items will appear here</p>
       </div>
 
-      <!-- Confirmation Action -->
-      <button>Confirm Order</button>
+      <!-- Active Cart State -->
+      <div id="active-cart-view" class="active-cart hidden">
+        <ul id="cart-list" class="cart-list">
+          <!-- Injected via JavaScript -->
+        </ul>
+        <div class="order-total-container">
+          <span>Order Total</span>
+          <strong id="cart-total-price">$0.00</strong>
+        </div>
+        <div class="carbon-neutral-msg">
+          <img src="./assets/images/icon-carbon-neutral.svg" alt="Carbon Neutral">
+          <p>This is a <span>carbon-neutral</span> delivery</p>
+        </div>
+        <button id="confirm-order-btn" class="btn-confirm">Confirm Order</button>
+      </div>
     </aside>
-
-    <footer class="attribution">
-      Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-      Coded by <a href="#">Your Name Here</a>.
-    </footer>
   </main>
+
+  <!-- Order Confirmation Modal Overlay -->
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal-content">
+      <img src="./assets/images/icon-order-confirmed.svg" alt="Confirmed Checkmark" class="modal-icon">
+      <h1>Order Confirmed</h1>
+      <p class="modal-subtitle">We hope you enjoy your food!</p>
+      
+      <div class="modal-summary-box">
+        <ul id="modal-summary-list">
+          <!-- Injected via JavaScript -->
+        </ul>
+        <div class="modal-total-container">
+          <span>Order Total</span>
+          <strong id="modal-total-price">$0.00</strong>
+        </div>
+      </div>
+      <button id="start-new-order-btn" class="btn-new-order">Start New Order</button>
+    </div>
+  </div>
+
+  <footer class="attribution">
+    Challenge by <a href="https://frontendmentor.io" target="_blank">Frontend Mentor</a>. Coded by<a href="#"> Kaleb Flores-Lopez</a>.
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
